@@ -13,4 +13,4 @@ def add_email(args: list[str], contacts: AddressBook) -> str:
     if not name in contacts:
         contacts[name] = Record(name)
     contacts[name].add_email(email)
-    return "Contact added."
+    return "Email added."
