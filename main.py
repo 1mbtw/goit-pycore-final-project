@@ -83,7 +83,7 @@ def main(start_empty: bool = False, filename: str = "addressbook.pkl"):
         "help": show_help,
     })
 
-    print("Welcome to the assistant bot!")
+    show_help(None, None)
 
     # main loop
     command = ""
