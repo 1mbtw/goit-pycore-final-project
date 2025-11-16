@@ -14,10 +14,11 @@ class Phone(Field):
         """
         value_str = super().validate_value(value)
 
-        # Preserve explicit US/international numbers (e.g. +1...) removing only spaces and parentheses
-        if value_str.strip().startswith("+1"):
-            cleaned = re.sub(r"[()\s]", "", value_str)
-            if len(cleaned) < 4:
+        stripped_value = value_str.strip()
+        if stripped_value.startswith("+"):
+            cleaned = re.sub(r"[()\s]", "", stripped_value)
+            digits_after_plus = re.sub(r"\D", "", cleaned[1:])
+            if not digits_after_plus or len(digits_after_plus) < 7:
                 raise CustomValueError("Phone number is too short.")
             return cleaned
 
